@@ -26,7 +26,7 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} font-sans vantialiased`}
       >
-        <div className=" relative flex min-h-screen flex-col">
+        <div className=" relative flex min-h-screen flex-col bg-gray-50">
         <Header/>
         <main className="flex-1">{children}</main>
         <Footer/>
