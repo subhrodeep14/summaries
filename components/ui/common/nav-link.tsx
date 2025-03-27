@@ -8,7 +8,7 @@ export default function NavLink({ href, children,className }: { href: string; ch
     const pathname=usePathname()
     const isActive=pathname===href ||( href !=='/' && pathname.startsWith(href))
   return (
-    <Link href={href} className={cn("transition text-sm duration-200 text-gray-600 hover:text-rose-500 ",className,
+    <Link href={href} className={cn("transition text-xl duration-200 text-gray-600 hover:text-rose-500 ",className,
         isActive && "text-rose-500"
     )}>
       {children}
