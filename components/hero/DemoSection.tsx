@@ -7,7 +7,8 @@ export default function DemoSection() {
                 <div className="flex flex-col items-center text-center space-y-4">
                     <Pizza className="w-6 h-6 text-rose-500"/>
                     <h3>
-                        Watch how Sommaire transforms your notes into beautiful summaries
+                        Watch how Sommaire transforms your notes into beautiful summaries.
+                        
                     </h3>
                 </div>
 
