@@ -73,8 +73,8 @@ const PricingCard = ({ name, price, description, items, id, paymentLink }: Price
 export default function PricePage() {
     return <section>
         <div className="py-12 lg:py-24vmax-w-5xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12">
-            <div>
-                <h2>Pricing</h2>
+            <div className="flex items-center justify-center w-full pb-12">
+                <h2 className=" uppercase font-bold text-xl mb-8 text-rose-500">Pricing</h2>
             </div>
             <div className="relative flex flex-col items-center justify-center  lg:flex-row lg:items-stretch gap-8 lg:gap-12">
                 {plans.map((plan) => (<PricingCard key={plan.id} {...plan} />))}
