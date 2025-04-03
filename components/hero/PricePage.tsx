@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 type PriceType = {
@@ -38,7 +39,7 @@ const plans = [
 ];
 
 const PricingCard = ({ name, price, description, items, id, paymentLink }: PriceType) => {
-    return <div className="relative w-full max-w-lg">
+    return <div className="relative w-full max-w-lg hover:scale-105 transition-transform duration-300 ease-in-out">
         <div className={cn("relative flex flex-col  gap-4 lg:gap-8 z-10 border-[1px] border-gray-500/20 rounded-2xl  p-6 h-full  shadow-lg", id === "pro" && 'border-rose-500')}>
             <div className="flex justify-between items-center gap-4">
                 <div>
@@ -61,8 +62,11 @@ const PricingCard = ({ name, price, description, items, id, paymentLink }: Price
                     ))}
             
             </div>
-            <div>
-                <Link href={paymentLink}>Buy Now</Link>
+            <div className="space-y-2 flex justify-center w-full">
+                <Link 
+                className={cn("w-full rounded-full flex items-center justify-center gap-2 bg-linear-to-r from-rose-800 to-rose-500 hover:bg-linear-to-r hover:from-rose-500 hover:to-rose-800 text-white font-semibold text-sm px-4 py-2 transition-all duration-300 ease-in-out",
+                id === "pro" ?"bg-rose-500 hover:bg-rose-600 border-rose-900" : 'border border-rose-100 from-rose-400 to-rose-500 hover:bg-rose-50  text-white')}
+                href={paymentLink}>Buy Now <ArrowRight size={18}/></Link>
             </div>
 
         </div>
@@ -71,7 +75,7 @@ const PricingCard = ({ name, price, description, items, id, paymentLink }: Price
 
 
 export default function PricePage() {
-    return <section>
+    return <section className="relative overflow-hidden " id="pricing">
         <div className="py-12 lg:py-24vmax-w-5xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12">
             <div className="flex items-center justify-center w-full pb-12">
                 <h2 className=" uppercase font-bold text-xl mb-8 text-rose-500">Pricing</h2>

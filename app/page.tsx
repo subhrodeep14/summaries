@@ -1,3 +1,4 @@
+import CTASection from "@/components/hero/CTASection";
 import DemoSection from "@/components/hero/DemoSection";
 import HeroSection from "@/components/hero/HeroSection";
 import HowItWorks from "@/components/hero/HowItWorks";
@@ -13,6 +14,7 @@ export default function Home() {
       <DemoSection/>
       <HowItWorks/>
       <PricePage/>
+      <CTASection/>
     </div>
   );
 }
