@@ -26,7 +26,7 @@ const Header = () => {
       <div className='flex lg:justify-end items-center gap-4'>
         <SignedIn>
           <div className='flex gap-4 items-center'>
-            <NavLink href='/upload'>upload a PDF</NavLink>
+            <NavLink href='/upload'>Upload a PDF</NavLink>
             <div >
               Pro
               </div>
