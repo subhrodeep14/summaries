@@ -3,12 +3,15 @@
 import UploadFormInput from "./UploadFormInput";
 import { z } from "zod";
 import { useState } from "react";
+import { log } from "console";
 
-const schema = {
-    file: z.instanceof(File).refine((file) => file.type === "application/pdf", {    
+const schema = z.object({
+    file: z.instanceof(File,{message:'Invalid file'}).refine((file) => file.type === "application/pdf", {    
         message: "File must be a PDF",
+    }).refine((file) => file.size <= 20 * 1024 * 1024, { // 5MB limit
+        message: "File size exceeds 20MB", 
     }),
-}
+})
 
 export default function UploadForm() {
 
@@ -20,16 +23,14 @@ export default function UploadForm() {
         const formData = new FormData(e.currentTarget);
         const file = formData.get("file") as File;
 
-        //validate file type
-        if (file && file.type !== "application/pdf") {
-            alert("Please upload a PDF file.");
+       const validationResult = schema.safeParse({ file });
+        if (!validationResult.success) {
+            console.log(validationResult.error.flatten().fieldErrors.file?.[0] ?? "Invalid file");
+          
             return;
         }
-        //validate file size
-        if (file && file.size > 5 * 1024 * 1024) { // 5MB limit
-            alert("File size exceeds 5MB. Please upload a smaller file.");
-            return;
-        }
+
+
         // Process the file upload here 
         console.log("File uploaded:", file.name);
         // You can also send the file to your server or API endpoint here
