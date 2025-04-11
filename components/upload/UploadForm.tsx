@@ -22,7 +22,7 @@ export default function UploadForm() {
 
     },
     onUploadError: (error) => {
-      console.log(`Upload failed: ${error.message}`);
+      console.error(`Upload failed: ${error.message}`);
     },
     onUploadBegin(file) {
       console.log("Upload started:", file);
