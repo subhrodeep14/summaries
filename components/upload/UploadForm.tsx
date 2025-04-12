@@ -2,16 +2,16 @@
 "use client";
 import UploadFormInput from "./UploadFormInput";
 import { z } from "zod";
-import { useState } from "react";
-import { log } from "console";
+
 import { useUploadThing } from "@/utils/uploadthing";
 
 const schema = z.object({
-  file: z.instanceof(File, { message: 'Invalid file' }).refine((file) => file.type === "application/pdf", {
-    message: "File must be a PDF",
-  }).refine((file) => file.size <= 20 * 1024 * 1024, { // 5MB limit
+  file: z.instanceof(File, { message: 'Invalid file' }).refine((file) => file.type.startsWith( "application/pdf"), 
+    "File must be a PDF",
+  ).refine((file) => file.size <= 20 * 1024 * 1024, { // 5MB limit
     message: "File size exceeds 20MB",
-  }),
+  })
+  
 })
 
 export default function UploadForm() {
@@ -40,6 +40,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const file = formData.get("file") as File;
 
   const validationResult = schema.safeParse({ file });
+
+  
+  
+  console.log(validationResult);
+  
   if (!validationResult.success) {
     console.log(validationResult.error.flatten().fieldErrors.file?.[0] ?? "Invalid file");
 
@@ -48,11 +53,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
 
   const resp = await startUpload([file])
-  if (resp) {
-    console.log("Upload successful:", resp);
-  }
-  else {
-    console.log("Upload failed");
+  if (!resp) {
     return;
   }
   };
